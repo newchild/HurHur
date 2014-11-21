@@ -69,8 +69,6 @@ namespace Aggressive_Olaf
         static void Game_OnGameUpdate(EventArgs args)
         {
             
-            if (OlafKills.Item("catchQ").GetValue<bool>())
-            {
                 if(axe!=null && ((Player.Position.Distance(axe.Position))< OlafKills.Item("catchQ").GetValue<int>())){
                     Game.PrintChat("Getting Axe...");
                     xSLxOrbwalker.SetMovement(false);
@@ -80,8 +78,6 @@ namespace Aggressive_Olaf
                     xSLxOrbwalker.SetMovement(true);
                 }
                
-
-            }
             if (OlafKills.Item("ComboActive").GetValue<KeyBind>().Active)
             {
                 Combo();
