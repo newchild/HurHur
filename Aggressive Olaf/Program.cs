@@ -87,6 +87,7 @@ namespace Aggressive_Olaf
         {
 
             var target = SimpleTs.GetTarget(Q.Range, SimpleTs.DamageType.Physical);
+            Game.PrintChat(target.ChampionName);
             if (target.IsValidTarget(Q.Range))
             {
                 if (target.IsValidTarget(Q.Range))
