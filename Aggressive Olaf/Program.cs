@@ -66,15 +66,18 @@ namespace Aggressive_Olaf
                 if (target.IsValidTarget(Q.Range))
                 {
                     Q.CastIfHitchanceEquals(target, HitChance.VeryHigh);
+                    Game.PrintChat("Casting Q");
                 }
                 if (target.IsValidTarget(E.Range)) 
                 { 
                     E.Cast(target,OlafKills.Item("NFE").GetValue<bool>());
+                    Game.PrintChat("Casting E");
                 }
                 if (target.IsValidTarget(Player.AttackRange))
                 {
                     W.Cast(OlafKills.Item("NFE").GetValue<bool>());
                     R.Cast(OlafKills.Item("NFE").GetValue<bool>());
+                    Game.PrintChat("Casting W");
                 }
             }
         }
