@@ -44,6 +44,8 @@ namespace Aggressive_Olaf
             OlafKills.SubMenu("Combo").AddItem(new MenuItem("Save Mana for W", "Save Mana for W").SetValue(true));
             OlafKills.SubMenu("Misc").AddItem(new MenuItem("catchQ", "Auto Pickup Q in Range").SetValue(new Slider(0,100,1000)));
             OlafKills.AddToMainMenu();
+            GameObject.OnCreate += GameObject_OnCreate;
+            GameObject.OnDelete += GameObject_OnDelete;
             Game.OnGameUpdate += Game_OnGameUpdate;
             Game.PrintChat("Olaf Loaded");
 
@@ -54,6 +56,7 @@ namespace Aggressive_Olaf
                     if (obj.Name == "olaf_axe_totem_team_id_green.troy")
                     {
                         axe = obj;
+                        Game.PrintChat("Axe thrown");
                     }
                 }
         private static void GameObject_OnDelete(GameObject obj, EventArgs args)
@@ -68,7 +71,8 @@ namespace Aggressive_Olaf
             
             if (OlafKills.Item("catchQ").GetValue<bool>())
             {
-                if(axe!=null && ((Player.Position.Distance(axe.Position))< 200)){
+                if(axe!=null && ((Player.Position.Distance(axe.Position))< OlafKills.Item("catchQ").GetValue<int>())){
+                    Game.PrintChat("Getting Axe...");
                     xSLxOrbwalker.SetMovement(false);
                     Player.IssueOrder(GameObjectOrder.MoveTo,axe.Position);
                 }
@@ -86,7 +90,7 @@ namespace Aggressive_Olaf
         static void Combo()
         {
 
-            var target = SimpleTs.GetTarget(1000f, SimpleTs.DamageType.Physical);
+            var target = SimpleTs.GetTarget(Q.Range, SimpleTs.DamageType.Physical);
             if (target.IsValidTarget(Q.Range))
             {
                 if (target.IsValidTarget(Q.Range))
