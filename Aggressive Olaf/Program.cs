@@ -62,7 +62,9 @@ namespace Aggressive_Olaf
         static void Combo()
         {
             var target = SimpleTs.GetTarget(Q.Range, SimpleTs.DamageType.Physical);
-            if (target == null) return;
+            if (target == null) {
+                Game.PrintChat("Null Target");
+            }
             if (target.Team != Player.Team)
             {
                 if (target.IsValidTarget(Q.Range))
