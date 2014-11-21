@@ -68,6 +68,7 @@ namespace Aggressive_Olaf
         }
         static void Game_OnGameUpdate(EventArgs args)
         {
+            Game.PrintChat(Player.Position.Distance(axe.Position).ToString());
             
                 if(axe!=null && ((Player.Position.Distance(axe.Position))< OlafKills.Item("catchQ").GetValue<int>())){
                     Game.PrintChat("Getting Axe...");
@@ -88,11 +89,10 @@ namespace Aggressive_Olaf
 
             var target = SimpleTs.GetTarget(Q.Range, SimpleTs.DamageType.Physical);
             Game.PrintChat(target.ChampionName);
-            if (target.IsValidTarget(Q.Range))
-            {
+            
                 if (target.IsValidTarget(Q.Range))
                 {
-                    Q.CastIfHitchanceEquals(target, HitChance.VeryHigh);
+                    Q.CastIfHitchanceEquals(target, HitChance.VeryHigh, OlafKills.Item("NFE").GetValue<bool>());
                     Game.PrintChat("Casting Q");
                 }
                 if (target.IsValidTarget(E.Range)) 
@@ -106,7 +106,7 @@ namespace Aggressive_Olaf
                     R.Cast(OlafKills.Item("NFE").GetValue<bool>());
                     Game.PrintChat("Casting W");
                 }
-            }
+            
         }
 
     }
