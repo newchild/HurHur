@@ -14,3 +14,8 @@ C:\Users\Fabian\Documents\Visual Studio 2013\Projects\Aggressive Olaf\Aggressive
 C:\Users\Fabian\Documents\GitHub\HurHur\Aggressive Olaf\bin\Debug\Aggressive Olaf.exe.config
 C:\Users\Fabian\Documents\GitHub\HurHur\Aggressive Olaf\obj\Debug\Aggressive Olaf.exe
 C:\Users\Fabian\Documents\GitHub\HurHur\Aggressive Olaf\obj\Debug\Aggressive Olaf.pdb
+C:\Users\Fabian\Documents\GitHub\HurHur\Aggressive Olaf\bin\Debug\Aggressive Olaf.exe
+C:\Users\Fabian\Documents\GitHub\HurHur\Aggressive Olaf\bin\Debug\Aggressive Olaf.pdb
+C:\Users\Fabian\Documents\GitHub\HurHur\Aggressive Olaf\bin\Debug\SharpDX.Direct3D9.dll
+C:\Users\Fabian\Documents\GitHub\HurHur\Aggressive Olaf\bin\Debug\LeagueSharp.xml
+C:\Users\Fabian\Documents\GitHub\HurHur\Aggressive Olaf\obj\Debug\Aggressive Olaf.csprojResolveAssemblyReference.cache

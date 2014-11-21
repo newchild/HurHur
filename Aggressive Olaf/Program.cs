@@ -16,6 +16,7 @@ namespace Aggressive_Olaf
         public static Obj_AI_Base Player;
         public static Spell Q, W, E, R;
         public static Menu OlafKills;
+        private static GameObject axe;
         static void Main(string[] args)
         {
             CustomEvents.Game.OnGameLoad += onLoad;
@@ -41,31 +42,52 @@ namespace Aggressive_Olaf
             OlafKills.AddSubMenu(new Menu("Misc", "Misc"));
             OlafKills.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "Combo!").SetValue(new KeyBind(32, KeyBindType.Press)));
             OlafKills.SubMenu("Combo").AddItem(new MenuItem("Save Mana for W", "Save Mana for W").SetValue(true));
-            OlafKills.SubMenu("Misc").AddItem(new MenuItem("catchQ", "Auto Pickup Q").SetValue(true));
+            OlafKills.SubMenu("Misc").AddItem(new MenuItem("catchQ", "Auto Pickup Q in Range").SetValue(new Slider(0,100,1000)));
             OlafKills.AddToMainMenu();
             Game.OnGameUpdate += Game_OnGameUpdate;
             Game.PrintChat("Olaf Loaded");
 
 
         }
+        private static void GameObject_OnCreate(GameObject obj, EventArgs args)
+                {
+                    if (obj.Name == "olaf_axe_totem_team_id_green.troy")
+                    {
+                        axe = obj;
+                    }
+                }
+        private static void GameObject_OnDelete(GameObject obj, EventArgs args)
+        {
+            if (obj.Name == "olaf_axe_totem_team_id_green.troy")
+            {
+                axe = null;
+            }
+        }
         static void Game_OnGameUpdate(EventArgs args)
         {
+            
             if (OlafKills.Item("catchQ").GetValue<bool>())
             {
+                if(axe!=null && ((Player.Position.Distance(axe.Position))< 200)){
+                    xSLxOrbwalker.SetMovement(false);
+                    Player.IssueOrder(GameObjectOrder.MoveTo,axe.Position);
+                }
+                else{
+                    xSLxOrbwalker.SetMovement(true);
+                }
+               
+
             }
             if (OlafKills.Item("ComboActive").GetValue<KeyBind>().Active)
             {
                 Combo();
-                Game.PrintChat("Combo");
             }
         }
         static void Combo()
         {
-            var target = SimpleTs.GetTarget(Q.Range, SimpleTs.DamageType.Physical);
-            if (target == null) {
-                Game.PrintChat("Null Target");
-            }
-            if (target.Team != Player.Team)
+
+            var target = SimpleTs.GetTarget(1000f, SimpleTs.DamageType.Physical);
+            if (target.IsValidTarget(Q.Range))
             {
                 if (target.IsValidTarget(Q.Range))
                 {
