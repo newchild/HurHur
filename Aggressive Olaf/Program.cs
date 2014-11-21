@@ -69,6 +69,7 @@ namespace Aggressive_Olaf
         static void Game_OnGameUpdate(EventArgs args)
         {
             Game.PrintChat(Player.Position.Distance(axe.Position).ToString());
+            Game.PrintChat("LAGLAG");
             
                 if(axe!=null && ((Player.Position.Distance(axe.Position))< OlafKills.Item("catchQ").GetValue<int>())){
                     Game.PrintChat("Getting Axe...");
