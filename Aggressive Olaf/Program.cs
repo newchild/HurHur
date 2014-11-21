@@ -44,6 +44,7 @@ namespace Aggressive_Olaf
             OlafKills.SubMenu("Misc").AddItem(new MenuItem("catchQ", "Auto Pickup Q").SetValue(true));
             OlafKills.AddToMainMenu();
             Game.OnGameUpdate += Game_OnGameUpdate;
+            Game.PrintChat("Olaf Loaded");
 
 
         }
@@ -55,6 +56,7 @@ namespace Aggressive_Olaf
             if (OlafKills.Item("ComboActive").GetValue<KeyBind>().Active)
             {
                 Combo();
+                Game.PrintChat("Combo");
             }
         }
         static void Combo()
