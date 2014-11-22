@@ -16,7 +16,8 @@ namespace Aggressive_Olaf
         public static Obj_AI_Base Player;
         public static Spell Q, W, E, R;
         public static Menu OlafKills;
-        private static GameObject axe = null;
+        public static GameObject test = new GameObject();
+        public static GameObject axe = new GameObject();
         static void Main(string[] args)
         {
             CustomEvents.Game.OnGameLoad += onLoad;
@@ -63,7 +64,7 @@ namespace Aggressive_Olaf
         {
             if (obj.Name == "olaf_axe_totem_team_id_green.troy")
             {
-                axe = null;
+                axe = test;
                 Game.PrintChat("Axe removed");
             }
         }
@@ -74,7 +75,7 @@ namespace Aggressive_Olaf
                 Game.PrintChat(Player.Position.Distance(axe.Position).ToString());
                 Game.PrintChat("LAGLAG");
 
-                if (axe != null)
+                if (!axe.Equals(test))
                 {
                     if(Player.Position.Distance(axe.Position) < OlafKills.Item("catchQ").GetValue<int>()){
                         Game.PrintChat("Getting Axe...");
