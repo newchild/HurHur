@@ -107,6 +107,7 @@ namespace Aggressive_Olaf
             catch (Exception e)
             {
                 Game.PrintChat(e.Message);
+                Game.PrintChat(axe.ToString());
             }
         }
         static void Combo()
