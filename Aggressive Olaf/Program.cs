@@ -82,8 +82,17 @@ namespace Aggressive_Olaf
                
             if (OlafKills.Item("ComboActive").GetValue<KeyBind>().Active)
             {
-                Combo();
-                Game.PrintChat("Combo");
+                try
+                {
+                    Combo();
+                    Game.PrintChat("Combo");
+                }
+                catch (Exception e)
+                {
+                    Game.PrintChat(e.Message);
+                    Game.PrintChat(e.ToString());
+                }
+                
             }
         }
         static void Combo()
