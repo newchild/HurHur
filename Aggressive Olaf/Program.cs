@@ -16,14 +16,15 @@ namespace Aggressive_Olaf
         public static Obj_AI_Base Player;
         public static Spell Q, W, E, R;
         public static Menu OlafKills;
-        public static GameObject test = new GameObject();
-        public static GameObject axe = new GameObject();
+
         static void Main(string[] args)
         {
             CustomEvents.Game.OnGameLoad += onLoad;
         }
         static void onLoad(EventArgs args)
         {
+            public static GameObject test = new GameObject();
+            public static GameObject axe = new GameObject();
             Obj_AI_Base Player = ObjectManager.Player;
             if (Player.BaseSkinName != "Olaf") return;
             Q = new Spell(SpellSlot.Q, 1000f);
