@@ -68,31 +68,40 @@ namespace Aggressive_Olaf
         }
         static void Game_OnGameUpdate(EventArgs args)
         {
-            Game.PrintChat(Player.Position.Distance(axe.Position).ToString());
-            Game.PrintChat("LAGLAG");
-            
-                if(axe!=null && ((Player.Position.Distance(axe.Position))< OlafKills.Item("catchQ").GetValue<int>())){
+            try
+            {
+                Game.PrintChat(Player.Position.Distance(axe.Position).ToString());
+                Game.PrintChat("LAGLAG");
+
+                if (axe != null && ((Player.Position.Distance(axe.Position)) < OlafKills.Item("catchQ").GetValue<int>()))
+                {
                     Game.PrintChat("Getting Axe...");
                     xSLxOrbwalker.SetMovement(false);
-                    Player.IssueOrder(GameObjectOrder.MoveTo,axe.Position);
+                    Player.IssueOrder(GameObjectOrder.MoveTo, axe.Position);
                 }
-                else{
+                else
+                {
                     xSLxOrbwalker.SetMovement(true);
                 }
-               
-            if (OlafKills.Item("ComboActive").GetValue<KeyBind>().Active)
+
+                if (OlafKills.Item("ComboActive").GetValue<KeyBind>().Active)
+                {
+                    try
+                    {
+                        Combo();
+                        Game.PrintChat("Combo");
+                    }
+                    catch (Exception e)
+                    {
+                        Game.PrintChat(e.Message);
+                        Game.PrintChat(e.ToString());
+                    }
+
+                }
+            }
+            catch (Exception e)
             {
-                try
-                {
-                    Combo();
-                    Game.PrintChat("Combo");
-                }
-                catch (Exception e)
-                {
-                    Game.PrintChat(e.Message);
-                    Game.PrintChat(e.ToString());
-                }
-                
+                Game.PrintChat(e.Message);
             }
         }
         static void Combo()
